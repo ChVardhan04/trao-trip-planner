@@ -143,20 +143,4 @@ The **Notes tab** on each trip lets users write freeform text — packing lists,
 - No email verification on registration
 - JWT stored in localStorage (XSS risk in production — use HTTP-only cookies instead)
 
----
 
-## Deployment Notes
-
-### Frontend → Vercel
-```bash
-vercel --cwd frontend
-# Set NEXT_PUBLIC_API_URL to your backend URL
-```
-
-### Backend → Railway / Render
-- Push backend to a separate repo or subfolder
-- Set all `.env` variables in the platform's dashboard
-- MongoDB → use MongoDB Atlas free tier
-
-### Why not deployed here
-Environment variables (Anthropic API key, MongoDB URI) require a live server. The code is fully production-ready and can be deployed to Vercel + Railway in under 10 minutes following the steps above.
