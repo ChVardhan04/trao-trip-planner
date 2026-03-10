@@ -1,4 +1,4 @@
-# Trao – AI Travel Planner
+# Trao - AI Travel Planner
 
 An AI-powered travel planning web application built as a full-stack assessment project.
 
@@ -17,7 +17,6 @@ Trao lets users generate complete day-by-day travel itineraries using Claude AI.
 | Frontend  | Next.js 14 + Tailwind CSS |
 | Backend   | Node.js + Express        |
 | Database  | MongoDB + Mongoose       |
-| AI        | Anthropic Claude (claude-opus-4) |
 | Auth      | JWT (jsonwebtoken) + bcryptjs |
 
 ---
@@ -27,7 +26,7 @@ Trao lets users generate complete day-by-day travel itineraries using Claude AI.
 ### Prerequisites
 - Node.js 18+
 - MongoDB running locally or a MongoDB Atlas URI
-- Anthropic API key
+- Any API key
 
 ### Backend
 
@@ -44,7 +43,7 @@ npm run dev
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/tripplanner
 JWT_SECRET=your_secret_here
-ANTHROPIC_API_KEY=sk-ant-...
+API_KEY=sk-ant-...
 FRONTEND_URL=http://localhost:3000
 ```
 
@@ -78,7 +77,7 @@ trip-planner/
 │       ├── middleware/
 │       │   └── auth.js           # JWT verification
 │       └── controllers/
-│           └── aiController.js   # Anthropic API calls
+│           └── aiController.js   
 └── frontend/
     └── src/
         ├── app/                  # Next.js App Router pages
@@ -107,19 +106,6 @@ trip-planner/
 
 ---
 
-## AI Agent Design
-
-The AI agent uses **Anthropic's Claude** (`claude-opus-4`) via the official SDK.
-
-Two functions in `aiController.js`:
-
-1. **`generateItinerary`** – Takes destination, days, budget, interests and returns a full JSON object with `itinerary`, `budgetEstimate`, and `hotels`.
-2. **`regenerateDay`** – Takes the same trip context plus a custom instruction (e.g. "more outdoor activities") and returns a regenerated single day.
-
-The prompts instruct Claude to return only valid JSON, which is then parsed and saved directly to MongoDB.
-
----
-
 ## Creative Feature: Trip Notes
 
 The **Notes tab** on each trip lets users write freeform text — packing lists, reminders, things to research, contacts, etc. Notes are saved per-trip and isolated per user. This solves a real travel planning pain point: people need a scratchpad alongside their itinerary, not a separate app.
@@ -138,7 +124,7 @@ The **Notes tab** on each trip lets users write freeform text — packing lists,
 
 ## Known Limitations
 
-- AI generation can take 5–15 seconds; a loading indicator shows but no streaming is implemented
+- AI generation can take 5-15 seconds; a loading indicator shows but no streaming is implemented
 - Budget estimates are AI-generated approximations, not real prices
 - No email verification on registration
 - JWT stored in localStorage (XSS risk in production — use HTTP-only cookies instead)
